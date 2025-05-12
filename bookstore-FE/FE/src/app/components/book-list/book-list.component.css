@@ -1,61 +1,68 @@
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #ef4444;
+  --text-color: #333;
+  --border-radius: 6px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s ease;
+}
+
 .book-list {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 16px;
+  margin: auto;
+  padding: 2rem 1rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
 }
 
 .book-list h2 {
-  font-weight: 500;
-  margin-bottom: 24px;
-  color: var(--primary-color);
-  font-size: 1.8rem;
-}
-
-.book-list ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.book-item {
-  background: white;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: 20px;
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: var(--transition);
-}
-
-.book-item:hover {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.book-info {
-  flex: 1;
-}
-
-.book-title {
-  margin: 0 0 8px 0;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
   color: var(--text-color);
+  font-weight: bold;
+}
+
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.book-table th,
+.book-table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.book-table thead {
+  background-color: #f1f3f5;
+}
+
+.book-table tbody tr:hover {
+  background-color: #f8f9fa;
 }
 
 .book-actions {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .action-button {
-  padding: 8px 16px;
+  padding: 6px 14px;
+  border: none;
   border-radius: var(--border-radius);
+  font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .action-button.edit {
@@ -63,12 +70,65 @@
   color: white;
 }
 
+.action-button.edit:hover {
+  background-color: #2563eb;
+}
+
 .action-button.delete {
   background-color: var(--secondary-color);
   color: white;
 }
 
-.action-button:hover {
-  opacity: 0.9;
-  box-shadow: var(--box-shadow);
+.action-button.delete:hover {
+  background-color: #dc2626;
+}
+
+.no-books {
+  font-size: 1rem;
+  color: #777;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .book-table thead {
+    display: none;
+  }
+
+  .book-table,
+  .book-table tbody,
+  .book-table tr,
+  .book-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .book-table tr {
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+  }
+
+  .book-table td {
+    padding: 0.75rem 1rem;
+    text-align: right;
+    position: relative;
+    border-bottom: 1px solid #eee;
+  }
+
+  .book-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    font-weight: bold;
+    text-align: left;
+    color: #555;
+  }
+
+  .book-actions {
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  }
 }

@@ -1,19 +1,36 @@
 <div class="book-list">
-    <h2>Book List</h2>
-    <ul *ngIf="books.length">
-      <li *ngFor="let book of books">
-        <div class="book-item">
-          <div class="book-info">
-            <h3 class="book-title">{{ book.title }}</h3>
-            <p>Author: {{ book.author }} - Price: ${{ book.price }}</p>
-          </div>
-          <div class="book-actions">
-            <button class="action-button edit" (click)="editBook(book.id!)">Edit</button>
-            <button class="action-button delete" (click)="deleteBook(book.id!)">Delete</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-</div>
+  <h2> Book List</h2>
 
-  
+  <table style="width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;" border="2" *ngIf="books.length" class="book-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price ($)</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td data-label="Title">{{ book.title }}</td>
+        <td data-label="Author">{{ book.author }}</td>
+        <td data-label="Price">{{ book.price }}</td>
+        <td data-label="Description">{{ book.description }}</td>
+        <td data-label="Actions">
+          <div class="book-actions" style="text-align: center;display: flex;gap: 0.5rem;flex-wrap: wrap;">
+            <button class="action-button edit" (click)="editBook(book.id!)"> Edit</button>
+            <button class="action-button delete" (click)="deleteBook(book.id!)"> Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="no-books" *ngIf="!books.length">📭 No books available.</p>
+</div>
